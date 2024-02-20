@@ -42,8 +42,8 @@ console.log(a);
 **#Output:**
 
 ```diff
-+hi
-+Hello
+hi
+Hello
 
 ```
 ---
