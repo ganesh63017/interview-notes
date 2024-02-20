@@ -5,3 +5,5 @@
 # text in gray
 @@ text in purple (and bold)@@
 ```
+
+how to create JWT token?

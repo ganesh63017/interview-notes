@@ -71,6 +71,3 @@ export interface User {
 In this case, the User interface outlines the expected properties of a user without defining how they should be implemented. Interfaces are especially useful when multiple classes or components need to adhere to the same structure.
 
 
-
-
-
