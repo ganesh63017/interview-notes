@@ -9,6 +9,16 @@
                 It used to organize and manage data, making it easier to manipulate and interact with in different parts of the application.
 
 **Example:**
+```html
+
+<html>
+    <body>
+        <h1>Hello </h1>
+
+    <body>
+</html>
+
+```
 
 ```js
 // User Model
