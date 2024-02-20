@@ -14,9 +14,9 @@ console.log(a);
 **#Output:**
 
 ```
-[!CAUTION]ReferenceError: a is not defined
+ReferenceError: a is not defined
 
-[!NOTE]Note:use var for avoid error (var is hoisted)
+Note:use var for avoid error (var is hoisted)
 
 ```
 
@@ -69,23 +69,32 @@ Hello
 **#Output:**
 
 ```
-
-> [!CAUTION] 
->Uncaught SyntaxError: Identifier 'b' has already been declared 
+Uncaught SyntaxError: Identifier 'b' has already been declared 
 
 ```
-      
-    
-   
---------------------------------------
+--- 
 
+
+4. **shadowing with var:**
+   
+```js
+  function test(){
          var a=10;
          var a=20;          
          console.log(a)
+    }
 
+ test();
+```
 
+**#Output:**
 
---------------------------------------
+```
+20
+
+```
+
+---
 
 
 map:
