@@ -14,11 +14,9 @@ console.log(a);
 **#Output:**
 
 ```
-> [!CAUTION]
->ReferenceError: a is not defined
+[!CAUTION]ReferenceError: a is not defined
 
->[!NOTE] 
->Note:use var for avoid error (var is hoisted)
+[!NOTE]Note:use var for avoid error (var is hoisted)
 
 ```
 
