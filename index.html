@@ -9,15 +9,17 @@
    <script>
 
 function test(){
-        let a = "Hello";   // or use let
+        var a = "Hello";   
+        let b = "Bye";
         if(true){
             let a = "hi";
-            console.log(a);   //or use let
+            var b= "Goodbye"  // error already taken
+            console.log(a);
+            console.log(b);
         }
-        console.log(a)
     }
-    
-    test();
+
+ test();
    </script> 
 </body>
 </html>

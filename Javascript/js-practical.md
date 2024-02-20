@@ -13,10 +13,12 @@ console.log(a);
 ```
 **#Output:**
 
-```diff
-+ReferenceError: a is not defined
+```
+> [!CAUTION]
+>ReferenceError: a is not defined
 
-!note:use var for avoid error (var is hoisted)
+>[!NOTE] 
+>Note:use var for avoid error (var is hoisted)
 
 ```
 
@@ -41,16 +43,18 @@ console.log(a);
 
 **#Output:**
 
-```diff
+```
 hi
 Hello
 
 ```
 ---
 
-shadowing with let to var:
+3. **shadowing with let to var:**
 
-        function test(){
+
+```js
+  function test(){
         var a = "Hello";   
         let b = "Bye";
         if(true){
@@ -60,8 +64,21 @@ shadowing with let to var:
             console.log(b);
         }
     }
+
+ test();
+```
+
+**#Output:**
+
+```
+
+> [!CAUTION] 
+>Uncaught SyntaxError: Identifier 'b' has already been declared 
+
+```
+      
     
-    test();
+   
 --------------------------------------
 
          var a=10;
