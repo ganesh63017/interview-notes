@@ -7,23 +7,12 @@
 </head>
 <body>
    <script>
+      let person = {name:"ram"};
+      const members = [person];
 
-function test(){
-    function square(num){
-        return num * num;
-    }
+      person.name = null;
 
-
-    function displaySquare(fn){
-        
-        console.log("Square is: "+ fn(5));
-    }
-    
-    displaySquare(square);
-    
-    }
-
- test();
+      console.log(members) // name : null -> impacted
    </script> 
 </body>
 </html>

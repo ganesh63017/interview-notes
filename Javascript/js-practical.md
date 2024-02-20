@@ -213,9 +213,13 @@ const mapResult = arr.map((ar)=>{
 })
 
 console.log(mapResult);
+```
 
+**#Output:**
 
-#Output: [4, 7, 11, 13, 46]
+```
+[4, 7, 11, 13, 46]
+
 ```
 
 ```js
@@ -225,10 +229,15 @@ const forEachResult = arr.forEach((ar,i)=>{
 })
 
 console.log(forEachResult);
-
-
-#Output: undefined
 ```
+
+**#Output:**
+
+```
+undefined
+
+```
+
 ---
 
 **example-2**
@@ -257,9 +266,13 @@ const data = students.map((stu)=>{
     },0)
     
   console.log(data)
+```
 
+**#Output:**
 
-#Output: 293
+```
+293
+
 ```
 ---
 
@@ -279,46 +292,96 @@ const data = students.map((stu)=>{
     
     displaySquare(square);
 
-  #Output: Square is: 25
 ```
 
+**#Output:**
 
-----------------------------------------------------------------------------
+```
+Square is: 25
 
-  // What is IIFE (Immediatly Invoked Function Expression)
-        
+```
+---
+
+9. **IIFE:**
+
+   IIFE (Immediatly Invoked Function Expression)
+
+  ```js
         ((num)=>{
             console.log(num * num);        
         })(5);
+  ``` 
 
-----------------------------------------------------------------------------
+**#Output:**
 
-        ((num)=>{
-            return (function(y){
-                console.log(num);     // 1 
-            })(10);
-        })(5);
-----------------------------------------------------------------------------
+```
+25
+
+```
+
+```js
+
+((num)=>{
+  return (function(y){
+     console.log(num);   
+    })(10);
+ })(5);
+
+```
+
+**#Output:**
+
+```
+5 
+
+```
+
+---
+
+10. **What will be the output:**
+
+```js
  for(var i=0;i<5;i++){
-            setTimeout(() =>{
-                console.log(i); // 5 5 5 5 5
-            },i*1000)
-        }
+      setTimeout(() =>{
+          console.log(i);
+      },i*1000)
+    }
+```
 
+**#Output:**
 
+```
+5 5 5 5 5
 
- -------------------------------------------------------
+Note: instead of var if let used then output will be 0 1 2 3 4  
+```
 
-   
-    function fun(x,y){ // parameter
+---
+
+**Parameters   & Arguments:**
+
+```js
+    function fun(x,y){ // parameters
         console.log(x*y);
     }
     
-    fun(5,10)  // arguments
-       
--------------------------------------------------------
+    fun(5,10)  // arguments 
+```
 
-    function fun(...nums){ // rest opeator
+**#Output:**
+
+```
+50
+
+```
+
+---
+
+**Rest and Spread Operator:**
+
+```js
+
+function fun(...nums){ // rest opeator
         console.log(nums);
     }
     
@@ -326,9 +389,20 @@ const data = students.map((stu)=>{
     
     fun(...arr)    // spread operator
 
-----------------------------------------------------------------
+```
 
-    callback function:
+**#Output:**
+
+```
+[5, 10]
+
+```
+   
+---    
+
+**callback function:**
+
+```js
 
      function printOp(op){
         console.log(op);
@@ -341,11 +415,20 @@ const data = students.map((stu)=>{
     
     takeIp(printOp);
 
+```
 
-----------------------------------------------------------------
+**#Output:**
+```
+Hi Good Morning!!!
 
-Arrow Function:
+```
 
+---
+
+
+**Arrow Function:**
+
+```js
 
   function fun(){   // with normal function we can check arguments also
       console.log(arguments); // use arguments its inbuild keyword
@@ -353,18 +436,35 @@ Arrow Function:
   
   fun(1,2,3,4,5)
 
+```
 
+**#Output:**
 
-    fun = () =>  console.log(arguments); // using arrow function
+```
+[1, 2, 3, 4, 5]
+
+```
+
+```js
+  fun = () =>  console.log(arguments); // using arrow function
   
   fun(1,2,3,4,5)  // error arguments is not defined
 
+```
+
+**#Output:**
+
+```
+error arguments is not defined
+
+```
+
+---
+
+**this keyword:**
 
 
-----------------------------------------------------------------------------
-
-this:
-
+```js
     let user = {
         userName:"Admin",
         arrowFun:()=>{
@@ -378,18 +478,28 @@ this:
     
     user.arrowFun();
     user.regFun();
+```
 
-----------------------------------------------------------------------------
+**#Output:**
 
- // closure in js
+```
+User Name: undefined
+User Name: Admin
 
-    // closure scope chain
+```
 
+---
+
+
+**closures:**
+
+closure scope chain
+
+```js
         function makeFun(){
             var name = "ABCD";
             function display(){
                 console.log(name);
-
                 function fun3(num){
                     console.log('this is fun 3, num= ',num);
                 }
@@ -401,7 +511,21 @@ this:
 
         makeFun()()(10);
 
-----------------------------------------------------------------------------
+```
+
+**#Output:**
+
+```
+
+ABCD
+this is fun 3, num=  10
+
+```
+
+---
+
+```js
+
     var e = 10;
 
             function sum(a){
@@ -414,21 +538,42 @@ this:
                 }
             }
 
-    console.log(sum(20)(30)(40)(50)); // 150
+    console.log(sum(20)(30)(40)(50)); 
 
-----------------------------------------------------------------------------
+```
+
+**#Output:**
+
+```
+150
+
+```
+
+---
+
+```js
    let count =0;
         (function print(){
             if(count ===0){
                 let count =1; // shadowing
-                console.log(count); // 1
+                console.log(count); 
             }
-            console.log(count); // 0
+            console.log(count);
         })();
-----------------------------------------------------------------------------
 
- // time optimization
+```
 
+```
+1
+0
+
+```
+
+---
+
+**time optimization**
+
+```js
         let a = [];
 
         function find(){
@@ -442,10 +587,8 @@ this:
             }
         }
 
-        const closure = find();
-
+  const closure = find();
   
-
   console.time("6");
   // find(6);      // without time optimization
 
@@ -460,18 +603,61 @@ this:
 
   console.timeEnd("12");
 
-----------------------------------------------------------------------------
+```
 
 
+```
+with time optimization: 
+
+36
+6: 0.158935546875 ms
+144
+12: 0.052001953125 ms
+
+---
+
+without time optimization
+
+36
+6: 0.18408203125 ms
+144
+12: 0.080810546875 ms
+
+
+```
+
+
+---
+
+
+```js
       for(var i=0;i<3;i++){
         setTimeout(function log(){
           console.log(i);   // if var : 3 3 3 
         },1000);            // if let : 0 1 2
        }
-----------------------------------------------------------------------------
 
- // print 0 1 2 without using let use var only
+```
 
+---
+
+
+**print 0 1 2 without using let use var only**
+
+**Problem Statement:**
+
+```js
+
+for (var i = 0; i < 3; i++) {
+          setTimeout(() => {
+            console.log(i);
+          }, 1000);
+      }
+```
+
+**Solution:**
+
+```js
   for (var i = 0; i < 3; i++) {
         function inner(i) {
           setTimeout(() => {
@@ -481,11 +667,19 @@ this:
         inner(i);
       }
 
-----------------------------------------------------------------------------
+```
 
-Q: How would you use a closure to create a private
-counter?
+**#Output**
 
+```
+0 1 2
+```
+
+---
+
+**How would you use a closure to create a private counter?**
+
+```js
  function counter(){
         var _counter = 0;
 
@@ -509,9 +703,13 @@ counter?
        cnt.add(20);
        console.log(cnt.getCounter());
 
-----------------------------------------------------------------------------
-// Q: What is Module Pattern ?
+```
 
+---
+
+**What is Module Pattern in js?**
+
+```js
       var Module = (function(){
           function privateMethod(){
             console.log("Private");
@@ -520,7 +718,7 @@ counter?
           return{
             publicMethod:function(){
               console.log('public');
-              // privateMethod();
+              privateMethod();  // error
             }
           }
       })();
@@ -528,9 +726,21 @@ counter?
       Module.publicMethod();
       Module.privateMethod(); // cant access directly
 
-----------------------------------------------------------------------------
-// Make this run only once
+```
+**#Output**
 
+```
+public
+Private
+Uncaught TypeError: Module.privateMethod is not a function
+
+```
+
+---
+
+**Make this run only once**
+
+```js
       let view;
       function fun(){
           let cnt =0;
@@ -540,22 +750,29 @@ counter?
               console.log("Hello "+view);
               cnt++;
           }  
-
-          } 
-
-
+        } 
       }
 
     let one =fun();
     one();
     one();
     one();
- -----------------------------------------------
 
+```
 
-        // Once Polyfill:
+**#Output**
 
-        function once(func,context){
+```
+Hello World!!!
+```
+
+---
+
+**Once Polyfill**
+
+```js
+
+  function once(func,context){
           let ran;
 
           return function(){
@@ -575,9 +792,19 @@ counter?
     hello();
     hello();
 
- -----------------------------------------------
+```
 
- // Q: Implement Caching/Memoize Function
+**#Output**
+
+```
+hello
+```
+
+---
+
+**Implement Caching/Memoize Function**
+
+```js
 
          function myMemoize(fn,context){
             const res = {};
@@ -617,28 +844,52 @@ counter?
           // console.log(fun(1000,2000));
           console.timeEnd("Second call");
 
-
------------------------------------------------
-    // Difference between closure and scope
-
------------------------------------------------
+```
 
 
-    Currying:
+**#Output:**
 
+```
+memoizedFun function call: 
+
+2000000
+First call: 12.7890625 ms
+36000000
+Second call: 8.85693359375 ms
+
+---
+
+fun function call: 
+
+2000000
+First call: 17.594970703125 ms
+36000000
+Second call: 9.3291015625 ms
+
+```
+---
+
+**Difference between closure and scope**
+
+**Currying:**
+
+```js
     function fun(num1){
-          return (num2)=>{
-              console.log(num1 * num2)
-          }
-
+      return (num2)=>{
+         console.log(num1 * num2)
+        }
       }
 
       fun(5)(10);
 
------------------------------------------------
+```
+**#Output:**
 
+```
+50
+```
 
-
+```js
       function fun(type){
  
         return (no1)=>{
@@ -662,17 +913,26 @@ counter?
         }
       }
 
-
-    //  console.log( fun("mult")(10)(2));
+ 
+    //  console.log( fun("mult")(10)(2)); // 20
 
         const mul = fun("mult");
         console.log(mul(10)(20));
         console.log(mul(30)(20));
+```
 
------------------------------------------------
+**#Output:**
 
-    Infinite Currying:
+```
+200
+600
+```
 
+---
+
+**Infinite Currying:**
+
+```js
       function add(a){
           return (b)=>{
             if(b) return add(a+b);
@@ -683,16 +943,22 @@ counter?
        
       console.log(add(5)(2)(7)(8)(18)(10)(20)());
 
----------------------------------------------------
+```
 
-Currying VS Partial Application:
+**#Output:**
 
+```
+70
+``` 
+
+---
+
+**Currying VS Partial Application:**
   
----------------------------------------------------
+**Manipulating DOM (use Currying):**
 
-Manipulating DOM (use Currying):
-
-
+```html
+<html>
 <body>
  <h1 id="heading">Hello</h1>
 
@@ -704,22 +970,21 @@ Manipulating DOM (use Currying):
       }
       
       const updateHeader = updateElementText("heading");
-
       updateHeader("Hi, Good Morning!!!");
-
-
     </script>
 
 </body>
+</html>
+```
 
----------------------------------------------------
-
-*** Curry() implementation:
+---
 
 
- // curry() implementation
-      // Converts f(a,b,c) into f(a)(b)(c)
+**Curry() implementation:**
 
+ Converts f(a,b,c) into f(a)(b)(c)
+
+```js
       function curry(func){
         return function curriedFunc(...args){
             if(args.length >= func.length){
@@ -738,32 +1003,57 @@ Manipulating DOM (use Currying):
 
       console.log(totalSum(1)(5)(6)(7))
 
----------------------------------------------------
+```
 
+**#Output:**
 
-    Objects in Javascript:
+```
+19
+```
 
-        const user = {
-      name:"Abcd",
-      age:29
-     }
+---
 
-     user.name = "Ram";
+**Objects in Javascript:**
 
-    //  delete user.age 
+```js
 
-     console.log(user)
+  const user = {
+    name:"Abcd",
+    age:29
+  }
 
------------------------------------------------------------
+  user.name = "Ram";
+
+//  delete user.age // {name: 'Ram'}
+
+  console.log(user)
+
+```
+**#Output:**
+
+```
+{name: 'Ram', age: 29}
+```
+
+---
+
+```js
  const fun = (function (a){
           delete a; // delete only object property not local variable
           return a;
       })(10);
  
-      console.log(fun)
+      console.log(fun);
+```
 
-----------------------------------------------------
+**#Output:**
 
+```
+10
+```
+---
+
+```js
       const porperty = "firstName";
       const name = "RAM TM"; 
       
@@ -773,8 +1063,17 @@ Manipulating DOM (use Currying):
 
       console.log(user.firstName);
 
-----------------------------------------------------
+```
 
+**#Output:**
+
+```
+RAM TM
+```
+
+---
+
+```js
    const user ={
       name:'ABCD',
       age:20,
@@ -785,33 +1084,76 @@ Manipulating DOM (use Currying):
      for(key in user){
         console.log(key+" : "+user[key]);
      }
+```
 
-----------------------------------------------------
+**#Output:**
 
-Check length of object:
+```
+name : ABCD
+age : 20
+sal : 20000
+status : single
+```
 
-Object.keys(objName).length
+---
 
-----------------------------------------------------
+**Check length of object:**
+
+```js
+ const user ={
+      name:'ABCD',
+      age:20,
+      sal:20000,
+      status:'single'
+     }
+
+let len = Object.keys(user).length;
+console.log(len)
+```
+**#Output:**
+
+```
+4
+```
+
+---
+
+```js
+const a = {};
+
+const b = {key:"b"};
+const c = {key:"c"};
+
+a[b] = 123;   // a["[object Object]"]  means "[object Object]" = 123
+
+a[c] = 456;  // a["[object Object]"] (overlap to) "[object Object]" = 456 
 
 
- const a = {};
-      const b = {key:"b"};
-      const c = {key:"c"};
-     
-      a[b] = 123;   // a["[object Object]"]  means "[object Object]" = 123
-     
-      a[c] = 456;  // a["[object Object]"] (overlap to) "[object Object]" = 456 
+console.log(a[b]);
 
+```
 
-      // console.log(a[b]);
+**#Output:**
 
-----------------------------------------------------
+```
+456
+```
 
-   console.log([..."abcdefghijklm"])
+---
 
-   it spread values and create an array
-----------------------------------------------------
+```js
+console.log([..."abcdefghijklm"]);   //  it spread values and create an array
+```
+
+**#Output:**
+
+```
+['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm']
+```
+
+---
+
+```js
 
   let obj = {
           name:'abcd',
@@ -827,8 +1169,17 @@ Object.keys(objName).length
 
         console.log(admin)
 
-----------------------------------------------------
- 
+```
+
+**#Output:**
+
+```
+{name: 'abcd', age: 30, no: 101010101, address: 'pune', admin: true}
+```
+
+---
+
+```js
       const user ={
         name:'abcd',
         age:20,
@@ -839,9 +1190,18 @@ Object.keys(objName).length
 
       console.log(data); // only age and sal will be strinify
 
-----------------------------------------------------
+```
+ 
+**#Output:**
+
+```
+{"age":20,"sal":30000}   
+```
+     
+---
 
 
+```js
    const shape = {
         radius:10,
         diameter(){
@@ -854,10 +1214,20 @@ Object.keys(objName).length
       console.log(shape.diameter());
       console.log(shape.perimeter())
 
-----------------------------------------------------
+```
 
-        // what is destructuring in objects ?
+**#Output:**
 
+```
+ 20
+ NaN 
+```
+
+---
+
+**what is destructuring in objects ?**
+
+```js
       let user = {
         name:'ABCD',
         age:24,
@@ -869,65 +1239,109 @@ Object.keys(objName).length
       };
 
       // const name = "XYZ" // if any other name is there
-
       // const {name:myName} = user;
       // console.log(myName);
-
-
 
       const { address: {city}} = user
 
       console.log(city)
-----------------------------------------------------
 
+```
 
+**#Output:**
 
+```
+pune
+```
+---
+
+```js
   // function getItems(fruitList,...args,favFruit){   // error code line
       function getItems(fruitList,favFruit, ...args){ // ...args is the rest parameter must be last as parameter
         return [...fruitList,...args,favFruit];  // this ...args is spread operator
       }
 
      console.log( getItems(["banana","apple"],"pear","orange"));
-----------------------------------------------------
-    
-    // Object reference
+
+```
+
+**#Output:**
+
+```
+['banana', 'apple', 'orange', 'pear']
+```
+
+---
+
+**Object reference**
+
+```js
 
   let c = {geeting:"hi"};
-     let d;
+  let d;
+  d = c;
 
-     d = c;
+  c.geeting = "hello";
+  console.log(d.geeting);
 
-     c.geeting = "hello";
+```
 
-     console.log(d.geeting)
+**#Output:**
+```
+hello
+```
 
 ---------------------------------------------------------------
-        
-        console.log({a:1} == {a:1});   // false
-        console.log({a:1} === {a:1});  // false
+  
+```js
 
-----------------------------------------------------------------
+console.log({a:1} == {a:1});  
+console.log({a:1} === {a:1});
 
+```
+
+**#Output:**
+```
+false
+false
+```
+
+---
+
+```js
  let person = {name:"ram"};
-      const members = [person];
-      person= null;
+ const members = [person];
+ person= null;
       
-      console.log(members) // array with 0th position person obj
-----------------------------------------------------------------
+ console.log(members) // array with 0th position person obj
 
+```
 
-      let person = {name:"ram"};
-      const members = [person];
-      // person= null;
-      
-      // console.log(members) // array with 0th position person obj
+**#Output:**
+```
+[name:"ram"]
+```
 
-      person.name = null;
+---
 
-      console.log(members) // name : null -> impacted
-----------------------------------------------------------------
+```js
 
- 
+let person = {name:"ram"};
+const members = [person];
+
+person.name = null;
+
+console.log(members);
+
+```
+
+**#Output:**
+```
+[name:null]
+```
+
+---
+
         const value = {number:10};
 
         const multiply = (x = {...value}) => {  // ...value --> its clone of object value
@@ -1043,7 +1457,7 @@ Object.keys(objName).length
  this with normal function VS arrow Function:
 
 
-  ***using  normal function ***
+  *** using  normal function ***
 
 
     // let data  = {
@@ -1611,7 +2025,7 @@ Object.freeze(person);
 person.name = 'xzy';
 
 console.log(person.name); 
-// op: abcd not xyz, and no shows any error if not in strict model
+// op: abcd not xyz, and no shows any error if not iusing  normal functionn strict model
 // but in strict mode it will also give an error (cannto assign value to readonly property)
 
 
