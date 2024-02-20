@@ -97,20 +97,30 @@ Uncaught SyntaxError: Identifier 'b' has already been declared
 ---
 
 
-map:
+5. **map:**
+   
+```js
 
-  let arr = [1,2,3,4];
+ let arr = [1,2,3,4];
     
     let newArr = arr.map((num,i,arr) =>{
         return num * 10;
     
     })
     
-    console.log(newArr)
+    console.log(newArr);
 
+```
 
-    ** PolyFill for map **
+**#Output:**
 
+```
+[10,20,30,40]
+
+```
+
+**PolyFill for map:**
+```js
     Array.prototype.myMap = function(cb){
         let temp = [];
         for(let i=0;i<this.length;i++){
@@ -118,38 +128,51 @@ map:
         }
         return temp;
     }
-
---------------------------------------
-
-filter:
+```
+---
 
 
-    
-    let arr = [1,2,3,4];
+6. **filter:**
+   
+```js
+
+let arr = [1,2,3,4];
     
     let newArr = arr.filter((num) =>{
-        return num%2==0;
-    
+        return num%2==0;    
     })
     
-    console.log(newArr)
+    console.log(newArr) 
 
+```
 
-    **PolyFill for Filter **
+**#Output:**
 
-         Array.prototype.myFilter = function(cb){
+```
+ [2, 4]
+
+```
+
+**PolyFill for Filter:**
+```js
+ 
+     Array.prototype.myFilter = function(cb){
         let temp = [];
         for(let i=0;i<this.length;i++){
            if(cb(this[i],i,this))  temp.push(this[i]);
         }
         return temp;
     }
---------------------------------------
+
+```
+---
 
 
-reduce: 
+7. **reduce:**
+   
+```js
 
-    let arr = [1,2,3,4];
+let arr = [1,2,3,4];
     
     let newArr = arr.reduce((acc,next,i,arr) => {
        return acc + next; 
@@ -157,10 +180,19 @@ reduce:
     
     console.log(newArr)
 
- ** PolyFill for Reduce **
+```
 
-  Array.prototype.myReduce = function(cb,initialValue){
-       
+**#Output:**
+
+```
+ 10
+
+```
+
+**PolyFill for Reduce:**
+```js
+ 
+    Array.prototype.myReduce = function(cb,initialValue){       
         var accumulator = initialValue;
         for(let i=0;i<this.length;i++){
           accumulator = accumulator ? cb(accumulator,this[i],i,this) :
@@ -169,60 +201,72 @@ reduce:
         return accumulator;
     }
 
---------------------------------------
+```
+---
 
-
-
+ **example-1**
+```js
 const arr = [2,5,9,11,44];
-
 
 const mapResult = arr.map((ar)=>{
     return ar + 2;
 })
 
-console.log(mapResult); // ans -> [ 4, 7, 11, 13, 46 ]
+console.log(mapResult);
 
+
+#Output: [4, 7, 11, 13, 46]
+```
+
+```js
+const arr = [2,5,9,11,44];
 const forEachResult = arr.forEach((ar,i)=>{
     arr[i] = ar + 3;
 })
 
-console.log(forEachResult); // and -> undefined
-
-----------------------------------------------------------------------------
-
-// Question: return total marks for students 
-//with marks greater than 60 after 20 marks have been
-//added to those who scored less than 60
+console.log(forEachResult);
 
 
-let students = [
-    
+#Output: undefined
+```
+---
+
+**example-2**
+
+Question: return total marks for students with marks greater than 60 after 20 marks have been
+added to those who scored less than 60
+
+
+```js
+let students = [    
  {name:'abcd',rollNo:23,marks:90},
  {name:'xyz',rollNo:33,marks:70},
  {name:'pqr',rollNo:43,marks:30},
  {name:'lmn',rollNo:53,marks:63},
- {name:'mno',rollNo:63,marks:50},
-
- 
+ {name:'mno',rollNo:63,marks:50}, 
 ]
 
-
-  const data = students.map((stu)=>{
+const data = students.map((stu)=>{
         if(stu.marks < 60){
             stu.marks += 20;
         }
         return stu;
-    } ).filter((stu) => stu.marks > 60)
+    }).filter((stu) => stu.marks > 60)
     .reduce((pre,stu) =>{
         return pre + stu.marks 
     },0)
     
   console.log(data)
-----------------------------------------------------------------------------
-
-    First Class Function:
 
 
+#Output: 293
+```
+---
+
+8. **First Class Function:**
+  
+
+```js
     function square(num){
         return num * num;
     }
@@ -234,6 +278,10 @@ let students = [
     }
     
     displaySquare(square);
+
+  #Output: Square is: 25
+```
+
 
 ----------------------------------------------------------------------------
 

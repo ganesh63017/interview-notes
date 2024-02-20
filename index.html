@@ -9,9 +9,18 @@
    <script>
 
 function test(){
-         var a=10;
-         var a=20;          
-         console.log(a)
+    function square(num){
+        return num * num;
+    }
+
+
+    function displaySquare(fn){
+        
+        console.log("Square is: "+ fn(5));
+    }
+    
+    displaySquare(square);
+    
     }
 
  test();
