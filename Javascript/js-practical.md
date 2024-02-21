@@ -2163,7 +2163,7 @@ ABCD
 
 9. 
 
-    ```js
+```js
     
       function checkPassword(success,failed){
         let password = prompt("Password?","");
@@ -2183,10 +2183,9 @@ ABCD
 
        checkPassword(user.loginSuccess.bind(user),user.loginFailed(user));
        
-    ```
+```
 
 
----
 ---
 
 **javascript coding quetion**
