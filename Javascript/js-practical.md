@@ -2263,7 +2263,7 @@ child function
 
    3. how to find duplicate elements in given array ?
   
-    ```js
+```js
     const arr = [10,20,30,40,20,60,70,10];
     
     const duplicate = arr.filter((el,index,array) => arr.indexOf(el) !== index );
@@ -2275,11 +2275,11 @@ child function
     
     const unique = arr2.filter((el,index,arr2) => arr2.indexOf(el) == index) // or
 
-   // const unique = Array.from(new Set(arr)) // easy way
+      // const unique = Array.from(new Set(arr)) // easy way
     
     console.log('Unique: ',unique);  
     
-    ```
+```
   
 **#Output:**
 
