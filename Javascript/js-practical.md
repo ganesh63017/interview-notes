@@ -1342,18 +1342,33 @@ console.log(members);
 
 ---
 
-        const value = {number:10};
+```js
 
-        const multiply = (x = {...value}) => {  // ...value --> its clone of object value
-          console.log(x.number *= 2);
-        }
+  const value = {number:10};
 
-        multiply();  // 20
-        multiply();  // 20
-        multiply(value); // 20  // passing actual obj ref and it will copied into x and then it will change value of x = 10 to x =20 
-        multiply(value);  //40
+  const multiply = (x = {...value}) => {  // ...value --> its clone of object value
+    console.log(x.number *= 2);
+  }
 
-----------------------------------------------------------------
+  multiply();  
+  multiply(); 
+  multiply(value); // passing actual obj ref and it will copied into x and then it 
+                   // will change value of x = 10 to x =20 
+  multiply(value);
+
+```
+
+**#Output:**
+```
+20
+20
+20
+40
+```
+
+---   
+
+```js
 
    function fun(obj1){
         obj1.age = 25;
@@ -1374,144 +1389,217 @@ console.log(members);
 
       const obj2= fun(obj1);
 
-      console.log(obj1); //{name: 'Alex', age: 25}
-      console.log(obj2); // {name: 'John', age: 50}
+      console.log(obj1); 
+      console.log(obj2); 
+```
 
-----------------------------------------------------------------
+**#Output:**
+```
+{name: 'Alex', age: 25}
+{name: 'John', age: 50}
+```
 
+---
 
-      // What's shallow Copy and Deep Copy ?
+**What's shallow Copy and Deep Copy?**
 
-      // shallow Copy : one obj hold the reference of another obj
+**shallow Copy : one object hold the reference of another object**
 
-
-     /* 
+```js
       let obj = {
         name:'ram',
         age:20
       }
 
-      newObj = obj;
-      
-      newObj.age = 50;
+      newObj = obj;      
+      newObj.age = 50;     
+      console.log("Old Obj: "+ obj.age +"\nNew Obj: "+ newObj.age);
 
-     
-      console.log("Old Obj: "+ obj.age +"\nNew Obj: "+ newObj.age); // both age = 50 
-      */
-      
-      
-      // Deep Copy: one obj cloned with another obj variable
-      
-      let obj = {
-        name:'ram',
-        age:20
-      }
+```
 
-      // let newObj = {...obj};  // (destructuring) copy obj to newObj & not ref
+**#Output:**
+```
+Old Obj: 50
+New Obj: 50
+```
 
-      // let newObj = Object.assign({},obj); // 2nd way
-      
-      // let newObj = JSON.parse(JSON.stringify(obj)); // 3rd way
-
-      newObj.age = 55;
-      
-      console.log(newObj.age);    // 55   
-      console.log(obj.age);  // 20
+---
 
 
-----------------------------------------------------------------
+**Deep Copy: one obj cloned with another obj variable**
+    
+```js
 
-//********** This keyword **********
+  let obj = {
+    name:'ram',
+    age:20
+  }
 
-     // implicit binding & explicit binding
+  let newObj = {...obj};  // (destructuring) copy obj to newObj & not ref
 
-     // implicit binding usually this keyword use with . operator
-
-     // explicit binding includes call, bind, apply 
-
-
-        //   a = 10;   // for var and only a show op but let & const not shows
-        // console.log(this.a) // 10 
-
-----------------------------------------------------------------
+  // let newObj = Object.assign({},obj); // 2nd way copy object
   
+  // let newObj = JSON.parse(JSON.stringify(obj)); // 3rd way copy object
+  
+  newObj.age = 55;
+  
+  console.log(newObj.age);    // 55   
+  console.log(obj.age);  // 20
+
+
+```
+
+**#Output:**
+```
+55
+20
+
+Note: If you are sure your deeply nested data only includes strings, numbers, boolean and null, then you can use json parse and stringify but if there is nested object then destructuring & Object.assing will not work. 
+
+JSON.stringify works but there are some limitations
+
+1. Any internal getters and setters will be lost.
+2. Destruction of date objects. (Dates will be parsed as Strings, not as Dates)
+3. Class prototypes will be lost. 
+
+For deep cloning use lodash library or (2023 update) Use the structuredClone() or
+you can write your own deep cloning function using recursion
+```
+
+---
+
+**This keyword**
+
+```
+implicit binding & explicit binding
+
+implicit binding usually this keyword use with . operator
+
+explicit binding includes call, bind, apply 
+
+
+a = 10;   // for var and only a show op but let & const not shows
+console.log(this.a) // output- 10 
+
+```
+
+---
+
+```js
       a = 10;
 
      function fun(){
-      console.log(this.a); // var a & only a works but 
-     }                      // let and const not works because its not global
+      console.log(this.a); // var a and only a works but 
+     }                     // let and const (op: undefined) not works because its not global
 
      fun();
 
-----------------------------------------------
+```
+
+**#Output:**
+```
+10
+```
+
+---
+
+
+```js
 
  this.a = 5;
 
-      const fun = () =>{
-        console.log(this.a);  // same as above eg
-      }
+ const fun = () =>{
+   console.log(this.a);
+ }
 
-      fun();
-----------------------------------------------
+  fun();  
+```
 
- this with normal function VS arrow Function:
+**#Output:**
+```
+5
+```
+
+---
+
+ **this with normal function VS arrow Function:**
 
 
   *** using  normal function ***
 
+```js
 
-    // let data  = {
-    //   name:"abcd",
-    //   age: 30,
-    //   getData(){
-    //     console.log(this.name);
-    //   }
-    // }
+    let data  = {
+      name:"abcd",
+      age: 30,
+      getData(){
+        console.log(this.name);
+      }
+    }
 
-    // data.getData();
-
+  data.getData();
     
+```
 
-    // let data  = {
-    //   name:"abcd",
-    //   age: 30,
-    //   childObj:{
-    //     newName: "ram",
-    //     getData(){
-    //       console.log("Child: ",this.newName,"\nParent: ",this.name);
-    //     }
-
-    //   }
+**#Output:**
+```
+abcd
+```
 
 
-    // }
+```js
+    let data  = {
+      name:"abcd",
+      age: 30,
+      childObj:{
+        newName: "ram",
+        getData(){
+          console.log("Child: ",this.newName,"\nParent: ",this.name);
+        }
 
-    // data.childObj.getData(); // ram undefined
-
-
-----------------------------------------------
-
-  ***using  arrow function ***
-
-
-
- // let data  = {
-    //   name:"abcd",
-    //   age: 30,
-    //   getData: ()=> {
-    //       console.log(this) // undefined its pointing to window obj
-
-    //       // arrow function take reference from its parent function
-    //       // and parent function must be normal function ow its refer to window
-      
-    //     }
+      }
 
 
-    // }
+    }
 
-    // data.getData(); 
-      
+   data.childObj.getData();
+ 
 
+```
+
+**#Output:**
+```
+Child:  ram 
+Parent:  undefined
+```
+
+---
+
+
+**using  arrow function**
+
+```js
+
+ let data  = {
+      name:"abcd",
+      age: 30,
+      getData: ()=> {
+          console.log(this) // undefined its pointing to window obj
+          // arrow function take reference from its parent function
+          // and parent function must be normal function ow its refer to window      
+        }
+    }
+
+    data.getData();
+
+```
+
+**#Output:**
+```
+{window: Window, self: Window, document: document}.... (window object print)
+```
+
+```js
 
     let data  = {
       name:"abcd",
@@ -1522,33 +1610,44 @@ console.log(members);
           }     
           nestedArrow(); 
         }
-
-
-    }
+      }
 
     data.getData(); 
+```
 
---------------------------------------------------------------------------------------------
+**#Output:**
+```
+abcd
+```
+---
 
-        class user {
-        constructor(n){
-          this.name = n;
-        }
+**Class in JS**
 
-   
+```js
+
+      class user {
+          constructor(n){
+            this.name = n;
+          }  
         
-        getName(){
-          console.log(this.name)
-        }
+          getName(){
+              console.log(this.name)
+          }
      
       }
 
       let obj = new user('ram');
-
       obj.getName();
 
---------------------------------------------------------------------------------------------
+```
 
+**#Output:**
+```
+ram
+```
+---
+
+```js
   const user = {
       firstName:'ram',
       getName(){
@@ -1557,48 +1656,65 @@ console.log(members);
       }
     }
 
-    console.log(user.getName()); // ram
+    console.log(user.getName()); 
 
+```
 
+**#Output:**
+```
+ram
+```
+---
 
---------------------------------------------------------------------------------------------
-
-
+```js
       function makeUser(){
         return {
           name:'Ram',
-          ref:this,
-   
-          
+          ref:this,          
         }
       }
 
       let user = makeUser(); // pointing to parent obj which is window obj
-
       console.log(user.ref.name);
+      console.log(user.ref);
 
---------------------------------------------------------------------------------------------
+```
+
+**#Output:**
+```
+nothing will be print
+{window: Window, self: Window, document: document}.... (window object print)
+```
+
+
  
- for fix above problem:
+ **for fix above problem:**
+
+```js
 
   function makeUser(){
         return {
           name:'Ram',
          ref(){
           return this;
-         }
-   
-          
+         }          
         }
       }
 
-      let user = makeUser(); 
+ let user = makeUser(); 
 
-      console.log(user.ref().name);
+ console.log(user.ref().name);
 
---------------------------------------------------------------------------------------------
+```
 
+**#Output:**
+```
+ram
+```
 
+---
+
+```js
 
   const user = {
       name:"ram",
@@ -1613,8 +1729,18 @@ setTimeout(()=>{  // to solve problem call method in func
   user.logMsg();
 },1000);
 
+```
 
---------------------------------------------------------------------------------------------
+**#Output:**
+```
+nothing will be print
+ram
+```
+
+---
+
+```js
+
      const user = {
         name:"ram",
         greet(){
@@ -1623,26 +1749,27 @@ setTimeout(()=>{  // to solve problem call method in func
 
         farewell:()=>{
           return `Goodbye, ${this.name}`
-
-        }
-        
+        }        
       }
 
-      console.log(user.greet()); // Hello ram
-      console.log(user.farewell()); // Goodbye undefined or null
+      console.log(user.greet());
+      console.log(user.farewell());  // to solve problem make farewell normal 
+                                     // function or put in normal function
+```
 
-      // to solve problem make farewell normal function or put in normal function
+**#Output:**
+```
+Hello ram
+index.html:25 Goodbye, 
+```
 
+---
 
---------------------------------------------------------------------------------------------
-
-
+```js
    let calculator = {
             read(){
               this.a = +prompt("a = ",0);
-              this.b = +prompt("b = ",0);
-
-              
+              this.b = +prompt("b = ",0);              
             },
             sum(){
               return this.a + this.b; 
@@ -1657,8 +1784,11 @@ setTimeout(()=>{  // to solve problem call method in func
         console.log(calculator.mul());
 
 // work without this also throughout program
+```
 
---------------------------------------------------------------------------------------------
+---
+
+```js
 
         var length = 4;
 
@@ -1673,8 +1803,18 @@ setTimeout(()=>{  // to solve problem call method in func
           }
         }
 
-        object.method(callback); // 4
---------------------------------------------------------------------------------------------
+        object.method(callback);
+        
+```
+
+**#Output:**
+```
+4
+```
+
+---
+
+```js
     var length = 4;
 
         function callback(){
@@ -1689,47 +1829,73 @@ setTimeout(()=>{  // to solve problem call method in func
         }
 
         object.method(callback,2,3);
+```
 
---------------------------------------------------------------------------------------------
-   
+**#Output:**
+```
+3
+```
+
+---
+
+
+```js
    let calc = {
         total: 0,
         add(no){
           this.total += no;
-          return this
+          return this;
         },
         mult(no){
           this.total *= no;
-          return this
-
+          return this;
         },
         sub(no){
           this.total -= no;
-          return this
-
-        }    
-        
+          return this;
+        }            
       }
-
       
       const result = calc.add(10).mult(5).sub(30).add(10);
       console.log(result.total);
---------------------------------------------------------------------------------------------
+```
 
-**** Explicit binding (call,apply,bind) *****
+**#Output:**
+```
+30
+```
+
+---
+---
 
 
-call:
+**Explicit binding (call,apply,bind)**
+
+**1.call:**
+
+```
+Call is a function that helps you change the context of the invoking function. In layperson's terms, it helps you replace the value of this inside a function with whatever value you want.
+
+```
+
+```js
+
       var obj = {name:'ABCD'};
 
         function sayHello(){
-          return "Hi" + this.name
+          return "Hi" + this.name;
         }
 
-        console.log(sayHello());  // only Hi prints 
+        console.log(sayHello()); 
 
+```
 
-------------------------------------------------------------
+**#Output:**
+```
+Hi
+```
+
+```js
 
     var obj = {name:'ABCD'};
 
@@ -1739,23 +1905,54 @@ call:
 
         console.log(sayHello.call(obj,30,'pune'));
 
+```
 
-------------------------------------------------------------
+**#Output:**
+```
+Hi, My name is ABCD I am 30 old
+```
 
-apply:
+---
 
+**2.apply:**
 
-        var obj = {name:'ABCD'};
+```
+Apply is very similar to the call function. The only difference is that in apply you can pass an array as an argument list.
+
+```
+
+```js
+
+      var obj = {name:'ABCD'};
 
         function sayHello(age,add){
           return "Hi, My name is " + this.name  + " I am " + age + " old"
         }
 
-        console.log(sayHello.apply([obj,30,'pune']));
-------------------------------------------------------------
+      //  console.log(sayHello.apply(obj,new Array(30,'pune'))); // or
+      
+       console.log(sayHello.apply(obj,[30,'pune']));
 
-bind:
 
+```
+
+**#Output:**
+```
+Hi, My name is ABCD I am 30 old
+```
+
+---
+
+**3.bind:**
+
+```
+Bind is a function that helps you create another function that you can execute later with the new context of this that is provided.
+
+The bind function creates a copy of a function with a new value to the this present inside the calling function.
+
+```
+
+```js
     var obj = {name:'ABCD'};
 
         function sayHello(age){
@@ -1764,12 +1961,19 @@ bind:
 
         const bindFun = sayHello.bind(obj);
         console.log(bindFun(30));
+```
 
-------------------------------------------------------------
+**#Output:**
+```
+Hi, My name is ABCD I am 30 old
+```
 
-// find the op:
+---
 
+**#Find the op**
+1. 
 
+```js
   const person = {name:'ram'};
 
     function fun(age){
@@ -1777,13 +1981,24 @@ bind:
     }
 
     console.log(fun.call(person,23));
-    //console.log(fun.apply(person,[23]));
+    console.log(fun.apply(person,[23]));
     console.log(fun.bind(person,23));
+```
 
+**#Output:**
 
-------------------------------------------------------------
+```
+name is ram & age is 23
+name is ram & age is 23
+Function
+```
 
- const age = 10;
+---
+
+2. 
+```js
+
+        const age = 10;
 
         var person = {
           name:"ram",
@@ -1794,37 +2009,54 @@ bind:
         }
 
         var person2 = {age:24};
-       console.log( person.getAge.call(person2)); // 24
+       console.log( person.getAge.call(person2));
 
-------------------------------------------------------------
+```
 
+**#Output:**
 
+```
+24
+```
+
+---
+
+3. 
+```js
 
       var status = 'a';
 
-
-      setTimeout(()=>{
+        setTimeout(()=>{
             const status = 'b';
            const data = {
             status:'c', 
             getStatus(){
                 return this.status;
              }
-
            };
 
-           console.log(data.getStatus()); // c
-           console.log(data.getStatus.call(this)); // a
+           console.log(data.getStatus()); 
+           console.log(data.getStatus.call(this)); 
+      },0)  
 
+```
 
-      },0)
+**#Output:**
 
-------------------------------------------------------------
+```
+c
+a
 
+```
+
+---
+
+4. 
+
+```js
        const animals =[
           {species:"lion",name:"king"},
           {species:"whale",name:"Queen"},
-
         ]
 
         function printAnimals(i){
@@ -1837,28 +2069,58 @@ bind:
         for(let i=0;i<animals.length;i++){
           printAnimals.call(animals[i],i);
         }
-------------------------------------------------------------
 
+```
 
+**#Output:**
 
+```
+#0 lion: king
+#1 whale: Queen
+```
 
+---
+
+5. 
+
+```js
   const arr = ["a","b"];
   const ele = [0,1,2];
 
- 
-   arr.push.apply(arr,ele);
+  arr.push.apply(arr,ele);
+  console.log(arr);
+```
 
-   console.log(arr);
+**#Output:**
+
+```
+['a', 'b', 0, 1, 2]
+```
      
-------------------------------------------------------------
+---
 
+6. 
+
+```js
         const num = [5,9,2,17,1];
-        console.log(Math.max.apply(null,num))
-        console.log(Math.min.apply(null,num))
+        console.log(Math.max.apply(null,num));
+        console.log(Math.min.apply(null,num));
+```
 
-------------------------------------------------------------
-  function f(){
-          console.log(this); // 
+**#Output:**
+
+```
+17
+1
+```
+
+---
+
+7. 
+
+```js
+        function f(){
+          console.log(this);
         }
 
         let user = {
@@ -1866,20 +2128,44 @@ bind:
         }
        
         user.g(); // pointing to window object
-------------------------------------------------------------
+```
 
+**#Output:**
+
+```
+{window: Window, self: Window, document: document....}
+```
+
+---
+
+8. 
+
+```js
  function f(){
           console.log(this.name);
         }
 
-        f = f.bind({name:"ABCD"}).bind({name:"XYZ"}); // bind chaining not working only once it will bind with object
+        f = f.bind({name:"ABCD"}).bind({name:"XYZ"}); 
+        
+        // bind chaining not working only once it will bind with object
 
         f();
 
-------------------------------------------------------------
+```
 
+**#Output:**
 
-function checkPassword(success,failed){
+```
+ABCD
+```
+
+---
+
+9. 
+
+    ```js
+    
+      function checkPassword(success,failed){
         let password = prompt("Password?","");
         if(password == "ABCD") success();
         else failed();
@@ -1896,21 +2182,22 @@ function checkPassword(success,failed){
        }
 
        checkPassword(user.loginSuccess.bind(user),user.loginFailed(user));
+       
+    ```
 
 
-------------------------------------------------------------
+---
+---
+
+**javascript coding quetion**
+
+**callback method**
 
 
-
-  
- **** javascript coding quetion ************
-
-callback method
-
---------------------------------------------------------------------
  1. how to define a class with properties and methods in js
---------------------------------------------------------------------
-               class car{
+
+ ```js
+          class car{
             constructor(model,name){
                this.model = model;
                this.name = name;
@@ -1924,12 +2211,20 @@ callback method
          bmw = new car('2016','BMW');
 
          bmw.start();
+```
 
+**#Output:**
 
---------------------------------------------------------------------
+```
+car name is BMW
+```
+
+---
+
  2. how to implement class inheritance in js?
---------------------------------------------------------------------
 
+
+```js
 
 class Car{
     constructor(model,name){
@@ -1956,31 +2251,51 @@ bmw = new BMW('bmw2016','BMW');
 
 bmw.call();
 
+```
 
---------------------------------------------------------------------
+**#Output:**
+
+```
+car name is: BMW
+child function
+```
+
+---
+
    3. how to find duplicate elements in given array ?
---------------------------------------------------------------------
   
+    ```js
     const arr = [10,20,30,40,20,60,70,10];
     
     const duplicate = arr.filter((el,index,array) => arr.indexOf(el) !== index );
     
-    console.log(duplicate);
+    console.log('Duplicate: ',duplicate);
 
 
-
-     //const arr = [10,30,10,40,20,10];
+    const arr2 = [10,30,10,40,20,10];
     
-    // const unique = arr.filter((el,index,arr) => arr.indexOf(el) == index)
+    const unique = arr2.filter((el,index,arr2) => arr2.indexOf(el) == index) // or
+
+   // const unique = Array.from(new Set(arr)) // easy way
     
-    // console.log(unique);
+    console.log('Unique: ',unique);  
+    
+    ```
   
+**#Output:**
 
---------------------------------------------------------------------
+```
+Duplicate: [20, 10]
+Unique: [10, 30, 40, 20]
+```
+
+---
+
    4. How to find the count of duplicates in an array?
---------------------------------------------------------------------
   
-    const arr = [10,20,30,40,20,60,70,10,90,20];
+```js
+
+const arr = [10,20,30,40,20,60,70,10,90,20];
     
 const count = arr.reduce((obj,el) => {
     if(obj[el] == undefined){
@@ -1993,20 +2308,41 @@ const count = arr.reduce((obj,el) => {
 },{});
 
 console.log(count);
-  
-  
---------------------------------------------------------------------
-  5. how to check if a given number is an integer ?
---------------------------------------------------------------------
-    const no = 1;
-    
-    console.log(!isNaN(no));
-    // Number.isInteger(no)
-  
 
---------------------------------------------------------------------
-  6. explain the difference between Object.freeze() vs const ?
---------------------------------------------------------------------
+```
+
+**#Output:**
+
+```
+{10: 2, 20: 3, 30: 1, 40: 1, 60: 1, 70: 1, 90: 1}
+```
+
+---
+
+
+  5. how to check if a given number is an integer ?
+  
+  ```js
+  const no = 1;
+    
+  console.log(!isNaN(no));
+  console.log(Number.isInteger(no))
+
+  ```
+
+**#Output:**
+
+```
+true
+true  
+```
+
+---
+
+6. explain the difference between Object.freeze() vs const ?
+
+```js
+// for variable
 
 const month = 'July';
 
@@ -2015,6 +2351,7 @@ month = 'feb';
 console.log(month);  // it will give an error
 
 
+// for object
 
 let person = {
    name:'abcd'
@@ -2025,15 +2362,24 @@ Object.freeze(person);
 person.name = 'xzy';
 
 console.log(person.name); 
-// op: abcd not xyz, and no shows any error if not iusing  normal functionn strict model
-// but in strict mode it will also give an error (cannto assign value to readonly property)
 
+```
+**#Output:**
 
+```
+error
+abcd
 
---------------------------------------------------------------------
+print abcd not xyz, and no shows any error if not using normal functionn strict mode
+but in strict mode it will also give an error (cannto assign value to readonly property)  
+
+```
+
+---
+
   7. how to sort a number array?
---------------------------------------------------------------------
 
+  ```js
   const arr = [40,20,80,20,10,80,100];
     
     const sorted = arr.sort((a,b)=>{
@@ -2042,62 +2388,58 @@ console.log(person.name);
     
     console.log(sorted)  
   
---------------------------------------------------------------------
+  ```
+
+**#Output:**
+
+```
+[10, 20, 20, 40, 80, 80, 100]
+```
+
+---
+  
   8. how to sort given string array ?
---------------------------------------------------------------------
- 
- const arr = ['jan','feb','march','aug','may'];   
+
+```js
+    const arr = ['jan','feb','march','aug','may'];   
     
     console.log(arr.sort())
-  
-  
---------------------------------------------------------------------
-  9. how to find unique values in an array?
---------------------------------------------------------------------
- 
-   const arr = [10,30,10,40,20,10];
-    
-    // const unique = arr.filter((el,index,arr) => arr.indexOf(el) == index)
-    
-    // console.log(unique);
-  
 
-    const unique = Array.from(new Set(arr)) // easy way
-    
-    console.log(unique)
-  
-  
---------------------------------------------------------------------
-  10. How to find unique values from an array sorted order ?  
---------------------------------------------------------------------
+```
  
-    let arr = [20,40,20,50,60,70,10,50];
-    
-    let sorted = arr.filter((el,index,arr) => arr.indexOf(el) === index)
-   .sort((a,b)=>{
-        return a - b;
-    } )
-    
-    console.log(sorted);
-  
-  
---------------------------------------------------------------------
-  11. How to find maximum value in a numbered array ?
---------------------------------------------------------------------
+**#Output:**
 
+```
+['aug', 'feb', 'jan', 'march', 'may']
+```
+  
+---
+  
+ 
+  9. How to find maximum value in a numbered array ?
+
+
+  ```js
   let arr = [20,40,20,50,60,70,10,50];
-    
+
     let max = arr.reduce((pre,next) => {
         return pre > next ? pre : next;
     })
     
-    console.log(max);
+    console.log(max);  
+  ```
   
-  
---------------------------------------------------------------------
-  12. How to find minimum value in a numbered array ?
---------------------------------------------------------------------
+**#Output:**
 
+```
+70
+```
+
+---
+  
+  10. How to find minimum value in a numbered array ?
+
+```js
   let arr = [20,40,20,50,60,70,10,50];
     
     let min = arr.reduce((pre,next) => {
@@ -2105,60 +2447,86 @@ console.log(person.name);
     })
     
     console.log(min);
+```
 
-  
---------------------------------------------------------------------
-  13. How to find the average of the numbers in the numbered array ?/
---------------------------------------------------------------------
+**#Output:**
 
+```
+10
+```
+
+---
+
+  11. How to find the average of the numbers in the numbered array ?
+
+```js
     let arr = [10,20,40,0,80,30,40];
     
     let total = arr.reduce( (pre,next) => pre +  next,0)
     
     
-    console.log(total/arr.length)
-  
-  
-  
---------------------------------------------------------------------
-  14.  how can you uppercase the first character in string array ?
---------------------------------------------------------------------
+    console.log(total/arr.length);
+```
 
- 
+**#Output:**
+
+```
+31.428571428571427
+```
+  
+---
+
+  
+  12. how can you uppercase the first character in string array ?
+
+ ```js
    const days = ['sun','mon','tue','wed','thu','fri','sat'];
   let newDay = [];
   days.forEach( (el) => {
     el = el.charAt(0).toUpperCase() + el.substring(1);
-//   console.log(el)
     newDay.push(el);
   } )
   
-  console.log(newDay)
-  
-  
---------------------------------------------------------------------
-  15. How to make sentence out of a given array?
---------------------------------------------------------------------
+  console.log(newDay);
+ 
+ ```
 
-    let arr = ['Welcome','to','Computer','World','!!!'];
+**#Output:**
 
-// let sen ='';
-// arr.forEach((el) =>{
-//     sen += el + ' ';
-// })
+```
+['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+```
 
-let sen = arr.join(" ");
+---
 
 
-console.log(sen);
+  13. How to make sentence out of a given array?
 
-  
---------------------------------------------------------------------
-  16. How to check if an array contains any element of another array?
---------------------------------------------------------------------
+  ```js
 
-  
-  
+  let arr = ['Welcome','to','Computer','World','!!!'];
+
+  // let sen ='';
+  // arr.forEach((el) =>{
+  //     sen += el + ' ';
+  // })
+
+  let sen = arr.join(" ");
+  console.log(sen);
+
+  ```
+
+**#Output:**
+
+```
+Welcome to Computer World !!! 
+```
+
+---
+
+  14. How to check if an array contains any element of another array?
+
+```js
   let arr1 = [1,2,3,4,5,6,7,8,9,10];
 
   let arr2 = [12];
@@ -2166,16 +2534,25 @@ console.log(sen);
   let ans = arr1.some( el => arr2.includes(el))
 
   console.log(ans)
-  
-  
---------------------------------------------------------------------
-  17. Given two strings how can you check if the strings are anagram 
-  for each other ?
---------------------------------------------------------------------
 
+```
+
+**#Output:**
+
+```
+false
+```
+
+--- 
   
-   let str1 = 'abc';
+  15. Given two strings how can you check if the strings are anagram 
+  for each other ?
+
+  ```js
+    let str1 = 'abc';
     let str2 = 'cbd';
+    
+    //let str2 = 'cba';  // true
     
     function checkAnagram(s1,s2){
     let a = str1.toLowerCase();
@@ -2187,16 +2564,21 @@ console.log(sen);
     return a===b;
     }
     
-    console.log(checkAnagram(str1,str2));
+    console.log(checkAnagram(str1,str2));  
+  ```
+
+**#Output:**
+
+```
+false
+```
+
+---
   
-  
-  
---------------------------------------------------------------------
-  18. How can you extract a few fields from the given JSON object
+  16. How can you extract a few fields from the given JSON object
   and form a new array ?
---------------------------------------------------------------------
 
-
+```js
     const data = {
     "emp": [
       {
@@ -2223,8 +2605,7 @@ console.log(sen);
   }
   
 let result = data.emp.map((el) =>{
-    // return el.name
-    
+   
     let newData = {
         name:el.name,
         sal:el.sal + 500
@@ -2234,15 +2615,33 @@ let result = data.emp.map((el) =>{
     
 });
 
-console.log(result)
+console.log(result);
+```
+
+**#Output:**
+
+```
+[
+    { "name": "abcd", "sal": 1500 },
+    { "name": "xyz",  "sal": 2500 },
+    { "name": "pqrs", "sal": 3500 },
+    { "name": "lmno", "sal": 4500 }
+]
+```
+
+---
+---
 
 
---------------------------------------------------------------------
-  String Questions: 
---------------------------------------------------------------------
-    1. How do you check whether a string contains a substring?
 
-      --> using includes (ES6):
+  **String Questions:** 
+
+
+  1. How do you check whether a string contains a substring?
+
+```js
+
+      // using includes (ES6):
 
       let str = 'hello';
       let substr='ell';
@@ -2250,35 +2649,24 @@ console.log(result)
       console.log(str.includes(substr))
   
   
-       --> using indexOf (ES5):
+       // using indexOf (ES5):
 
-            let str = 'hello';
-            let substr='ell';
+        let str2 = 'hello';
+        let substr2='ell';
 
-            console.log(str.indexOf(substr) !== -1)
+        console.log(str2.indexOf(substr2) !== -1)
   
 
-      --> using regex
+      //using regex
 
 
-*************************************
+```
 
+**#Output:**
 
-// explicit binding with arrow function
+```
+true
+true
+```
 
-
-        const age = 10;
-
-          var person = {
-            name:"ram",
-            age:20,
-            getAgeArrow:() => console.log(this.age),
-            getAge:function(){
-              console.log(this.age)
-            }
-          }
-          var person2 = {age:24};
-
-          person.getAgeArrow.call(person2);
-          person.getAge.call(person2);
-          
+---
